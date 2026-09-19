@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name         Coursera Keep Active - Activity Simulator (Fixed)
 // @match        https://www.coursera.org/*
@@ -32,7 +31,7 @@
         transition: all 0.3s ease;
         border: 2px solid rgba(255,255,255,0.3);
     `;
-    
+
     // Hover effect
     indicator.addEventListener('mouseenter', () => {
         indicator.style.transform = 'scale(1.05)';
@@ -42,7 +41,7 @@
         indicator.style.transform = 'scale(1)';
         indicator.style.boxShadow = '0 4px 15px rgba(0,200,83,0.4)';
     });
-    
+
     // Click to toggle status display
     let showStatus = false;
     const statusBox = document.createElement('div');
@@ -61,12 +60,12 @@
         max-width: 300px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     `;
-    
+
     indicator.addEventListener('click', () => {
         showStatus = !showStatus;
         statusBox.style.display = showStatus ? 'block' : 'none';
     });
-    
+
     // Append to page when ready
     function appendIndicator() {
         if (document.body) {
@@ -80,7 +79,7 @@
     appendIndicator();
 
     // ===== CORE FUNCTIONALITY =====
-    
+
     // Override visibility API
     Object.defineProperty(document, 'hidden', { get: () => false, configurable: true });
     Object.defineProperty(document, 'visibilityState', { get: () => 'visible', configurable: true });
@@ -99,7 +98,7 @@
     function randomScroll() {
         const now = new Date();
         const timeStr = now.toLocaleTimeString();
-        
+
         // Small scroll down then up
         window.scrollBy(0, 3);
         setTimeout(() => window.scrollBy(0, -3), 500);
@@ -112,7 +111,7 @@
         lastActivity = timeStr;
         activityLog.unshift(timeStr);
         if (activityLog.length > 5) activityLog.pop();
-        
+
         // Update status box
         statusBox.innerHTML = `
             <div style="color:#ffd700; margin-bottom:6px;">📊 Activity Log</div>
